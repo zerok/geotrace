@@ -23,7 +23,7 @@ func TestSQLiteStore(t *testing.T) {
 	now := time.Date(2020, 5, 11, 12, 13, 14, 0, time.UTC)
 	lat := 48.487486
 	lon := 13.046261
-	require.NoError(t, st.Add(now, []float64{lat, lon}, ""))
+	require.NoError(t, st.Add(now, []float64{lon, lat}, ""))
 
 	db, err := sql.Open("sqlite3", "data.sqlite")
 	require.NoError(t, err)

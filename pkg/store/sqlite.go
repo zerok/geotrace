@@ -21,7 +21,7 @@ func NewSQLiteStore(path string) Store {
 }
 
 func (s *sqliteStore) Add(t time.Time, coordinates []float64, deviceID string) error {
-	_, err := s.db.Exec("INSERT INTO traces (time, device_id, lat, lon) VALUES(?, ?, ?, ?)", t.Format(time.RFC3339), deviceID, coordinates[0], coordinates[1])
+	_, err := s.db.Exec("INSERT INTO traces (time, device_id, lon, lat) VALUES(?, ?, ?, ?)", t.Format(time.RFC3339), deviceID, coordinates[0], coordinates[1])
 	return err
 }
 

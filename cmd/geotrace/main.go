@@ -20,6 +20,7 @@ func generateRootCmd() *Command {
 		},
 	}
 	cmd.AddCommand(generateServeCmd().Command)
+	cmd.AddCommand(generateExportTrackCmd().Command)
 	return &Command{&cmd}
 }
 
