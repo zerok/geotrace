@@ -1,6 +1,7 @@
 package store
 
 import (
+	"context"
 	"encoding/csv"
 	"fmt"
 	"os"
@@ -34,5 +35,13 @@ func (s *csvFileStore) Add(t time.Time, coordinates []float64, deviceID string) 
 	}); err != nil {
 		return err
 	}
+	return nil
+}
+
+func (s *csvFileStore) Close(ctx context.Context) error {
+	return nil
+}
+
+func (s *csvFileStore) Open(ctx context.Context) error {
 	return nil
 }
