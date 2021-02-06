@@ -16,6 +16,7 @@ func generateServeCmd() *Command {
 	var sqliteFile string
 	var apiKey string
 	var addr string
+	var exposeMetrics bool
 	cmd := &cobra.Command{
 		Use: "serve",
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -32,7 +33,7 @@ func generateServeCmd() *Command {
 			} else {
 				st = store.NewCSVFileStore(afero.NewOsFs(), csvFile)
 			}
-			srv := server.New(st, apiKey)
+			srv := server.New(st, apiKey, server.ExposeMetrics(exposeMetrics))
 			if err := st.Open(ctx); err != nil {
 				return err
 			}
@@ -47,5 +48,6 @@ func generateServeCmd() *Command {
 	cmd.Flags().StringVar(&sqliteFile, "sqlite-store", "", "Path to a SQLite file used for storage")
 	cmd.Flags().StringVar(&apiKey, "api-key", "", "API key required to add new traces")
 	cmd.Flags().StringVar(&addr, "addr", "localhost:8080", "Address to listen on")
+	cmd.Flags().BoolVar(&exposeMetrics, "expose-metrics", false, "Expose metrics on /metrics")
 	return &Command{cmd}
 }

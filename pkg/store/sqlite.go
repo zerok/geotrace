@@ -25,6 +25,14 @@ func (s *sqliteStore) Add(t time.Time, coordinates []float64, deviceID string) e
 	return err
 }
 
+func (s *sqliteStore) Count(ctx context.Context) (int64, error) {
+	var count int64
+	if err := s.db.QueryRowContext(ctx, "SELECT count(*) FROM traces").Scan(&count); err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
 func (s *sqliteStore) Open(ctx context.Context) error {
 	db, err := sql.Open("sqlite3", s.path)
 	if err != nil {

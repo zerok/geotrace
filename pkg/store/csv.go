@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/csv"
 	"fmt"
+	"io"
 	"os"
 	"time"
 
@@ -36,6 +37,27 @@ func (s *csvFileStore) Add(t time.Time, coordinates []float64, deviceID string) 
 		return err
 	}
 	return nil
+}
+func (s *csvFileStore) Count(ctx context.Context) (int64, error) {
+	fp, err := s.fs.OpenFile(s.path, os.O_CREATE|os.O_RDONLY, 0600)
+	if err != nil {
+		return 0, err
+	}
+	defer fp.Close()
+	reader := csv.NewReader(fp)
+	reader.Comma = ';'
+	var count int64
+	for {
+		_, err := reader.Read()
+		if io.EOF == err {
+			break
+		}
+		if err != nil {
+			return 0, err
+		}
+		count += 1
+	}
+	return count, nil
 }
 
 func (s *csvFileStore) Close(ctx context.Context) error {

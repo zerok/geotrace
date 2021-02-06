@@ -1,11 +1,14 @@
 package server
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 	"time"
 
 	"github.com/go-chi/chi"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	"github.com/zerok/geotrace/pkg/store"
 )
@@ -13,20 +16,51 @@ import (
 const tsFormat = "2006-01-02T15:04:05Z0700"
 
 type server struct {
-	s      store.Store
-	apiKey string
-	router chi.Router
+	s                 store.Store
+	apiKey            string
+	router            chi.Router
+	exposeMetrics     bool
+	metricRegistry    *prometheus.Registry
+	metricPointsTotal prometheus.GaugeFunc
 }
 
-func New(s store.Store, apiKey string) http.Handler {
+type Configurator func(srv *server)
+
+func ExposeMetrics(value bool) Configurator {
+	return func(srv *server) {
+		srv.exposeMetrics = value
+	}
+}
+
+func New(s store.Store, apiKey string, options ...Configurator) http.Handler {
 	r := chi.NewRouter()
 	srv := &server{
-		s:      s,
-		apiKey: apiKey,
-		router: r,
+		s:              s,
+		apiKey:         apiKey,
+		router:         r,
+		metricRegistry: prometheus.NewRegistry(),
+	}
+	srv.metricPointsTotal = prometheus.NewGaugeFunc(prometheus.GaugeOpts{
+		Name: "geotrace_points_total",
+		Help: "Total number of stored points",
+	}, srv.retrievePointsTotalMetric)
+	srv.metricRegistry.MustRegister(srv.metricPointsTotal)
+
+	for _, opt := range options {
+		opt(srv)
+	}
+
+	if srv.exposeMetrics {
+		r.Handle("/metrics", promhttp.HandlerFor(srv.metricRegistry, promhttp.HandlerOpts{}))
 	}
 	r.With(srv.requireAPIKey()).Post("/", srv.handlePost)
 	return srv
+}
+
+func (s *server) retrievePointsTotalMetric() float64 {
+	ctx := context.Background()
+	count, _ := s.s.Count(ctx)
+	return float64(count)
 }
 
 func (s *server) requireAPIKey() func(http.Handler) http.Handler {
