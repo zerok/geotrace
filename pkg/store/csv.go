@@ -67,3 +67,7 @@ func (s *csvFileStore) Close(ctx context.Context) error {
 func (s *csvFileStore) Open(ctx context.Context) error {
 	return nil
 }
+
+func (s *csvFileStore) GetTracesSince(ctx context.Context, ts time.Time) ([]Trace, error) {
+	return nil, fmt.Errorf("not supported")
+}

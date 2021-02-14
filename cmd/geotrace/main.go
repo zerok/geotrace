@@ -21,6 +21,7 @@ func generateRootCmd() *Command {
 	}
 	cmd.AddCommand(generateServeCmd().Command)
 	cmd.AddCommand(generateExportTrackCmd().Command)
+	cmd.AddCommand(generateBrowseCmd().Command)
 	return &Command{&cmd}
 }
 

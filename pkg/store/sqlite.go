@@ -49,6 +49,24 @@ func (s *sqliteStore) Close(ctx context.Context) error {
 	return s.db.Close()
 }
 
+func (s *sqliteStore) GetTracesSince(ctx context.Context, ts time.Time) ([]Trace, error) {
+	start := ts.UTC().Format(time.RFC3339)
+	rows, err := s.db.QueryContext(ctx, "SELECT time, lon, lat FROM traces where time >= ? order by time desc", start)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	result := make([]Trace, 0, 100)
+	for rows.Next() {
+		tr := Trace{}
+		if err := rows.Scan(&tr.Time, &tr.Lon, &tr.Lat); err != nil {
+			return nil, err
+		}
+		result = append(result, tr)
+	}
+	return result, nil
+}
+
 func init() {
 	mig = sqlitemigrate.NewRegistry()
 	mig.RegisterMigration([]string{
