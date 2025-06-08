@@ -1,13 +1,13 @@
 module github.com/zerok/geotrace
 
-go 1.21
+go 1.23.0
 
 require (
 	github.com/go-chi/chi v4.1.1+incompatible
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/prometheus/client_golang v0.9.3
 	github.com/rs/zerolog v1.18.0
-	github.com/spf13/afero v1.2.2
+	github.com/spf13/afero v1.14.0
 	github.com/spf13/cobra v1.0.0
 	github.com/stretchr/testify v1.4.0
 )
@@ -23,6 +23,6 @@ require (
 	github.com/prometheus/common v0.4.0 // indirect
 	github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084 // indirect
 	github.com/spf13/pflag v1.0.3 // indirect
-	golang.org/x/text v0.3.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
