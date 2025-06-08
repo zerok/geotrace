@@ -9,7 +9,7 @@ require (
 	github.com/rs/zerolog v1.18.0
 	github.com/spf13/afero v1.2.2
 	github.com/spf13/cobra v1.0.0
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
@@ -24,5 +24,5 @@ require (
 	github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084 // indirect
 	github.com/spf13/pflag v1.0.3 // indirect
 	golang.org/x/text v0.3.0 // indirect
-	gopkg.in/yaml.v2 v2.2.2 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
