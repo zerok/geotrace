@@ -4,7 +4,7 @@ COPY . /src
 WORKDIR /src/cmd/geotrace
 RUN go build -mod=mod
 
-FROM alpine:3.18
+FROM alpine:3.22
 VOLUME ["/data"]
 RUN adduser -u 1500 -h /data -H -D geotrace
 COPY --from=gobuilder /src/cmd/geotrace/geotrace /usr/local/bin/
