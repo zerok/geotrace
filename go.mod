@@ -6,7 +6,7 @@ require (
 	github.com/go-chi/chi v4.1.1+incompatible
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/prometheus/client_golang v1.22.0
-	github.com/rs/zerolog v1.18.0
+	github.com/rs/zerolog v1.34.0
 	github.com/spf13/afero v1.14.0
 	github.com/spf13/cobra v1.0.0
 	github.com/stretchr/testify v1.10.0
@@ -17,6 +17,8 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
