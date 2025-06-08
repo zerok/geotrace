@@ -5,13 +5,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi"
 	"github.com/zerok/geotrace/pkg/store"
 )
 
 type Browser struct {
 	store   store.Store
-	router  chi.Router
+	router  *http.ServeMux
 	webRoot string
 }
 
@@ -30,8 +29,8 @@ func New(st store.Store, options ...Option) *Browser {
 	for _, o := range options {
 		o(b)
 	}
-	router := chi.NewRouter()
-	router.Get("/api/v1/latest", func(w http.ResponseWriter, r *http.Request) {
+	router := http.NewServeMux()
+	router.HandleFunc("/api/v1/latest", func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 		if err := st.Open(ctx); err != nil {
 			http.Error(w, "Failed to open datastore", http.StatusInternalServerError)
@@ -47,7 +46,7 @@ func New(st store.Store, options ...Option) *Browser {
 		json.NewEncoder(w).Encode(traces)
 	})
 	if b.webRoot != "" {
-		router.Mount("/", http.FileServer(http.Dir(b.webRoot)))
+		router.Handle("/", http.FileServer(http.Dir(b.webRoot)))
 	}
 	b.router = router
 	return b
