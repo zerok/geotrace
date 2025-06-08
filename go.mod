@@ -3,7 +3,6 @@ module github.com/zerok/geotrace
 go 1.24.0
 
 require (
-	github.com/go-chi/chi v4.1.1+incompatible
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/prometheus/client_golang v1.22.0
 	github.com/rs/zerolog v1.34.0

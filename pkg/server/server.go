@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
@@ -18,7 +17,7 @@ const tsFormat = "2006-01-02T15:04:05Z0700"
 type server struct {
 	s                 store.Store
 	apiKey            string
-	router            chi.Router
+	router            *http.ServeMux
 	exposeMetrics     bool
 	metricRegistry    *prometheus.Registry
 	metricPointsTotal prometheus.GaugeFunc
@@ -33,7 +32,7 @@ func ExposeMetrics(value bool) Configurator {
 }
 
 func New(s store.Store, apiKey string, options ...Configurator) http.Handler {
-	r := chi.NewRouter()
+	r := http.NewServeMux()
 	srv := &server{
 		s:              s,
 		apiKey:         apiKey,
@@ -53,7 +52,7 @@ func New(s store.Store, apiKey string, options ...Configurator) http.Handler {
 	if srv.exposeMetrics {
 		r.Handle("/metrics", promhttp.HandlerFor(srv.metricRegistry, promhttp.HandlerOpts{}))
 	}
-	r.With(srv.requireAPIKey()).Post("/", srv.handlePost)
+	r.Handle("/", srv.requireAPIKey()(http.HandlerFunc(srv.handlePost)))
 	return srv
 }
 
