@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/rs/zerolog"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
+	"github.com/zerok/geotrace/internal/logging"
 	"github.com/zerok/geotrace/pkg/server"
 	"github.com/zerok/geotrace/pkg/store"
 )
@@ -21,7 +21,7 @@ func generateServeCmd() *Command {
 		Use: "serve",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			ctx := cmd.Context()
-			logger := zerolog.Ctx(ctx)
+			logger := logging.Setup()
 
 			if csvFile == "" && sqliteFile == "" {
 				return fmt.Errorf("specify a CSV or SQLite file")
@@ -40,7 +40,7 @@ func generateServeCmd() *Command {
 			defer st.Close(ctx)
 			s.Handler = srv
 			s.Addr = addr
-			logger.Info().Msgf("Starting server on %s", s.Addr)
+			logger.InfoContext(ctx, "starting server", logging.Addr(s.Addr))
 			return s.ListenAndServe()
 		},
 	}

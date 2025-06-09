@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
+	"github.com/zerok/geotrace/internal/logging"
 )
 
 type Command struct {
@@ -26,9 +26,11 @@ func generateRootCmd() *Command {
 }
 
 func main() {
-	logger := zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout})
+	ctx := context.Background()
 	cmd := generateRootCmd()
-	if err := cmd.ExecuteContext(logger.WithContext(context.Background())); err != nil {
-		logger.Fatal().Err(err).Msg("Command failed.")
+	logger := logging.Setup()
+	if err := cmd.ExecuteContext(ctx); err != nil {
+		logger.ErrorContext(ctx, "command failed", logging.Err(err))
+		os.Exit(1)
 	}
 }
