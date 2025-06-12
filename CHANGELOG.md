@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/zerok/geotrace/compare/v0.1.0...v0.1.1) (2025-06-12)
+
+
+### 🤖 Continuous Integration
+
+* fix credentials in called docker workflow ([#21](https://github.com/zerok/geotrace/issues/21)) ([65cd603](https://github.com/zerok/geotrace/commit/65cd603477d1c50dd6c3ac882fd3276d30dc91b9))
+
 ## 0.1.0 (2025-06-12)
 
 
