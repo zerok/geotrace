@@ -18,6 +18,13 @@ on:
       tag:
         type: string
         required: true
+    secrets:
+      DOCKER_USERNAME:
+        description: Username for DockerHub
+        required: true
+      DOCKER_PASSWORD:
+        description: Password for DockerHub
+        required: true
 env:
   REGISTRY_IMAGE: zerok/geotrace
   # Docker image tags. See https://github.com/docker/metadata-action for format
