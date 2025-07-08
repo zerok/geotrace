@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.2](https://github.com/zerok/geotrace/compare/v0.1.1...v0.1.2) (2025-07-08)
+
+
+### 🤖 Continuous Integration
+
+* trigger docker main build from release-please ([#25](https://github.com/zerok/geotrace/issues/25)) ([fabb99b](https://github.com/zerok/geotrace/commit/fabb99b2151473daae75f76db90f7a2f6c9a766e))
+
+
+### 🔧 Miscellaneous Chores
+
+* **deps:** bump docker/setup-buildx-action from 3.10.0 to 3.11.1 ([#23](https://github.com/zerok/geotrace/issues/23)) ([012edbb](https://github.com/zerok/geotrace/commit/012edbb756334b0d17fc995ecba8aca4c5386c1c))
+
 ## [0.1.1](https://github.com/zerok/geotrace/compare/v0.1.0...v0.1.1) (2025-06-12)
 
 
