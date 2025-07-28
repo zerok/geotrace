@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/zerok/geotrace/compare/v0.1.2...v0.1.3) (2025-07-28)
+
+
+### 🔧 Miscellaneous Chores
+
+* **deps:** bump github.com/mattn/go-sqlite3 from 1.14.28 to 1.14.29 ([#28](https://github.com/zerok/geotrace/issues/28)) ([241d26c](https://github.com/zerok/geotrace/commit/241d26cbe1999c966217c4fb0b057dd4e113da22))
+* **deps:** bump golang from 1.24.4-alpine to 1.24.5-alpine ([#26](https://github.com/zerok/geotrace/issues/26)) ([bcdb1ba](https://github.com/zerok/geotrace/commit/bcdb1badf6ccc45750f092505ac43f07cd24d559))
+
 ## [0.1.2](https://github.com/zerok/geotrace/compare/v0.1.1...v0.1.2) (2025-07-08)
 
 
