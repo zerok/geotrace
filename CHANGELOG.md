@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.3](https://github.com/zerok/geotrace/compare/v0.1.2...v0.1.3) (2025-08-12)
+
+
+### 🔧 Miscellaneous Chores
+
+* **deps:** bump actions/download-artifact from 4.3.0 to 5.0.0 ([#33](https://github.com/zerok/geotrace/issues/33)) ([8758f59](https://github.com/zerok/geotrace/commit/8758f591f8163d57b21f24f599210d451508f07d))
+* **deps:** bump docker/metadata-action from 5.7.0 to 5.8.0 ([#31](https://github.com/zerok/geotrace/issues/31)) ([2859fe6](https://github.com/zerok/geotrace/commit/2859fe6527374e2b3e59aa1b1b9b79af7d0811f8))
+* **deps:** bump github.com/mattn/go-sqlite3 from 1.14.28 to 1.14.29 ([#28](https://github.com/zerok/geotrace/issues/28)) ([241d26c](https://github.com/zerok/geotrace/commit/241d26cbe1999c966217c4fb0b057dd4e113da22))
+* **deps:** bump github.com/mattn/go-sqlite3 from 1.14.29 to 1.14.30 ([#29](https://github.com/zerok/geotrace/issues/29)) ([24253c3](https://github.com/zerok/geotrace/commit/24253c3ebcc21158f59d05e4ef3aafc7af87c69a))
+* **deps:** bump github.com/prometheus/client_golang ([36ec8c1](https://github.com/zerok/geotrace/commit/36ec8c1c5fefba65ed8142a2cda6dcdc36efcbfb))
+* **deps:** bump github.com/prometheus/client_golang from 1.22.0 to 1.23.0 ([#30](https://github.com/zerok/geotrace/issues/30)) ([36ec8c1](https://github.com/zerok/geotrace/commit/36ec8c1c5fefba65ed8142a2cda6dcdc36efcbfb))
+* **deps:** bump golang from 1.24.4-alpine to 1.24.5-alpine ([#26](https://github.com/zerok/geotrace/issues/26)) ([bcdb1ba](https://github.com/zerok/geotrace/commit/bcdb1badf6ccc45750f092505ac43f07cd24d559))
+* **deps:** bump golang from 1.24.5-alpine to 1.24.6-alpine ([#32](https://github.com/zerok/geotrace/issues/32)) ([2a9ae32](https://github.com/zerok/geotrace/commit/2a9ae327581a73c8244ae0611ed6d8b6f010a6ff))
+
 ## [0.1.2](https://github.com/zerok/geotrace/compare/v0.1.1...v0.1.2) (2025-07-08)
 
 
