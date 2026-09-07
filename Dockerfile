@@ -1,4 +1,4 @@
-FROM golang:1.27.0-alpine AS gobuilder
+FROM golang:1.27.1-alpine AS gobuilder
 RUN apk add --no-cache gcc libc-dev git
 COPY . /src
 WORKDIR /src/cmd/geotrace
