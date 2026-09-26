@@ -2,6 +2,8 @@ module github.com/zerok/geotrace
 
 go 1.26.0
 
+toolchain go1.27.1
+
 require (
 	github.com/mattn/go-sqlite3 v1.14.52
 	github.com/prometheus/client_golang v1.23.2
